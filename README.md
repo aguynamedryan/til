@@ -1,6 +1,6 @@
 ## 2025-01-16
 
-### \#then
+### Ruby\#then
 
 - Ruby has a `then` method that allows me to do stuff pipeline style
 - Coming back from a long time in R, this is a nice way to avoid nesting tons of calls
