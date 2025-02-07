@@ -1,3 +1,43 @@
+## 2025-02-07
+
+### RStudio Has a CTRL-SHIFT-P Mode
+
+I accidentally triggered this feature this morning.  Hitting CTRL-SHIFT-P in RStudio brought up an actions menu ala VS Code.
+
+Not sure I'll use it much, but it's interesting to have.  Not a lot of the packages I use seem to hook into it.  [`styler`](https://styler.r-lib.org/) does, but it doesn't offer "style_dir()" which is my go-to :-(
+
+### Brave Has a CMD-SHIFT-P Mode
+
+When I was seeing if RStudio would respond to CMD-SHIFT-P (I'm on macos), Brave presented it's own little action menu instead.  I spent 5 seconds with it and it didn't seem to offer much, but I'll play around some more.
+
+## 2025-02-06
+
+### Forcing Shiny reactive value update
+
+I needed to force a redraw of a DT, even if I didn't end up updating any of the data in the underlying data.frame.
+
+It turns out to be easy to do this.  Even if new_data is identical to data, applying an attribute to new_data will cause data to detect a change:
+
+```R
+observeEvent(input$update, {
+  new_data <- data()
+  attr(new_data, "trigger") <- Sys.time()  # Add a timestamp attribute
+  data(new_data)  # Assign modified object back to reactiveVal
+})
+```
+
+## 2025-01-21
+
+### Clear R Console Programmatically
+
+Here's a super easy way to clear the R console programmatically:
+
+```r
+cat("\014")
+```
+
+It sends CTRL-L, which is how you would normally clear the screen manually
+
 ## 2025-01-16
 
 ### Ruby\#then
@@ -145,3 +185,21 @@ register_all_s3_methods <- function() {
 
 - [Here's how](https://gist.github.com/parente/bfd7548ee08b6e377da85f8e4f88d6b8)
 - TLDR: `jupyter nbconvert my_input_notebook.ipynb --to notebook --ClearOutputPreprocessor.enabled=True --stdout > my_output_notebook.ipynb`
+
+## 2025-01-23
+
+### 1620, Lyndsi, Call
+
+- Water is not getting outside of shower on to floor
+- Leaking from three places
+  - Front of tub (inside)
+  - Back of tub (inside)
+  - However, when water was put on tiles, it leaked immediately
+- Lyndsi thinks the shower valve is the culprit
+- There are two leaking spots
+  - One closer to the front of the garage
+  - The other at the lowest point of the piping
+- She will take shower in the tub tonight, shoot water around the tub walls, and have someone video the whole thing
+- The grout leak is _immediate_
+
+Also, gate latches and ground locks need replacing after some winds
